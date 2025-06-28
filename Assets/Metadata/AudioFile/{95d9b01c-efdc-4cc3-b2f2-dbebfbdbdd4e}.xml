@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{95d9b01c-efdc-4cc3-b2f2-dbebfbdbdd4e}">
+		<property name="assetPath">
+			<value>STORM_Pluie et orage 2 (ID 0740)_LS.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>157.94927083333334</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{380ae1c9-75c0-42ee-9cf8-4f8ed1798ae8}</destination>
+		</relationship>
+	</object>
+</objects>
