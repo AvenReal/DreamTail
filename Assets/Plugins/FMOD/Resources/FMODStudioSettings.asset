@@ -463,8 +463,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../FMOD_DreamTail/FMOD_DreamTail.fspro
-  sourceBankPath: ../FMOD_DreamTail/Build
+  sourceProjectPath: Assets/FMOD_parameters/FMOD_DreamTail/FMOD_dreamtail.fspro
+  sourceBankPath: Assets/FMOD_parameters/FMOD_DreamTail/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
@@ -485,7 +485,8 @@ MonoBehaviour:
   VirtualChannelSettings: []
   RealChannelSettings: []
   Plugins: []
-  MasterBanks: []
+  MasterBanks:
+  - Master
   Banks: []
   BanksToLoad: []
   LiveUpdatePort: 9264
