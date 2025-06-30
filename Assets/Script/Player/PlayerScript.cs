@@ -22,7 +22,7 @@ public class PlayerScript : MonoBehaviour
         var horizontalMove = Input.GetAxis("Horizontal");
         if (horizontalMove != 0)
         {
-            transform.position += new Vector3(horizontalMove * MoveSpeed * Time.deltaTwime , 0, 0);
+            transform.position += new Vector3(horizontalMove * MoveSpeed * Time.deltaTime , 0, 0);
         }
     }
     # endregion
