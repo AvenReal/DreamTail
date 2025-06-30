@@ -4,6 +4,11 @@ public class PlayerScript : MonoBehaviour
 {
     [Header("Movements")]
     public int MoveSpeed;
+
+    [Header("Jumps")]
+    public int JumpBoost;
+    public int MaxNbOfJumps;
+    public int NbOfJumps;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
