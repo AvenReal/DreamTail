@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
@@ -5,7 +6,9 @@ public class PlayerScript : MonoBehaviour
     [Header("Components")] 
     public Rigidbody2D Rigidbody2D;
     public ParticleSystem WalkingParticle;
-    
+    public ParticleSystem DashingParticle;
+    public BoxCollider2D WallCollider;
+    public BoxCollider2D FloorCollider;
     
     [Header("Movements")]
     public int MoveSpeed;
@@ -25,6 +28,8 @@ public class PlayerScript : MonoBehaviour
     public int WallJumpBoost;
     public int MaxNbOfWallJumps;
     public int NbOfWallJumps;
+    
+    
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -66,9 +71,14 @@ public class PlayerScript : MonoBehaviour
 
     void DashUpdate()
     {
+        if(DashingParticle.isPlaying && Mathf.Abs( Rigidbody2D.linearVelocity.x) < 3)
+            DashingParticle.Stop();
+        
+        
         if(!(Input.GetKeyDown(KeyCode.E) && NbOfDashes > 0))
             return;
-        
+        DashingParticle.gameObject.transform.rotation = Quaternion.Euler(0, DashDirection ? 90 : -90, 0);
+        DashingParticle.Play();
         Rigidbody2D.AddForce(new Vector2((DashDirection ? 1 : -1) * DashBoost, 0), ForceMode2D.Impulse);
         NbOfDashes--;
 
@@ -85,5 +95,10 @@ public class PlayerScript : MonoBehaviour
             NbOfDashes = MaxNbOfDashes;
             NbOfWallJumps = MaxNbOfWallJumps;
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.gameObject.name);
     }
 }
