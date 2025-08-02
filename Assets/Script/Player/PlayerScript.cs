@@ -1,11 +1,12 @@
 using System;
+using System.ComponentModel.Design.Serialization;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
     [Header("Components")] 
     public Rigidbody2D Rigidbody2D;
-    public ParticleSystem WalkingParticle;
+    public ParticleSystem JumpingParticle;
     public ParticleSystem DashingParticle;
     public BoxCollider2D WallCollider;
     public BoxCollider2D FloorCollider;
@@ -28,13 +29,13 @@ public class PlayerScript : MonoBehaviour
     public int WallJumpBoost;
     public int MaxNbOfWallJumps;
     public int NbOfWallJumps;
-    
-    
+
+    public static PlayerScript Instance;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        Instance = this;
     }
 
     # region Updates
@@ -52,19 +53,18 @@ public class PlayerScript : MonoBehaviour
         if (horizontalMove != 0)
         {
             transform.position += new Vector3(horizontalMove * MoveSpeed * Time.deltaTime , 0, 0);
-            WalkingParticle.Play();
-        }
-        else
-        {
-            WalkingParticle.Stop();
         }
     }
 
     void JumpUpdate()
     {
+        if(JumpingParticle.isPlaying && Mathf.Abs(Rigidbody2D.linearVelocity.y) < 0.1f)
+            JumpingParticle.Stop();
+        
         if (!(Input.GetKeyDown(KeyCode.Space) && NbOfJumps > 0))
             return;
         
+        JumpingParticle.Play();
         Rigidbody2D.AddForce(new Vector2(0, JumpBoost), ForceMode2D.Impulse);
         NbOfJumps--;
     }
